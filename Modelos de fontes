@@ -1,0 +1,99 @@
+update csv
+
+import csv
+
+op = open("AllDetails.csv", "r")
+dt = csv.DictReader(op)
+print(dt)
+up_dt = []
+for r in dt:
+    print(r)
+    row = {'Sno': r['Sno'],
+           'Registration Number': r['Registration Number'],
+           'Name': r['Name'],
+           'RollNo': r['RollNo'],
+           'Status': 'P'}
+    up_dt.append(row)
+print(up_dt)
+op.close()
+op = open("AllDetails.csv", "w", newline='')
+headers = ['Sno', 'Registration Number', 'Name', 'RollNo', 'Status']
+data = csv.DictWriter(op, delimiter=',', fieldnames=headers)
+data.writerow(dict((heads, heads) for heads in headers))
+data.writerows(up_dt)
+
+op.close()
+
+__________________________________________________________________________________
+from tempfile import NamedTemporaryFile
+import shutil
+import csv
+
+filename = 'my.csv'
+tempfile = NamedTemporaryFile(mode='w', delete=False)
+
+fields = ['ID', 'Name', 'Course', 'Year']
+
+with open(filename, 'r') as csvfile, tempfile:
+    reader = csv.DictReader(csvfile, fieldnames=fields)
+    writer = csv.DictWriter(tempfile, fieldnames=fields)
+    for row in reader:
+        if row['ID'] == str(stud_ID):
+            print('updating row', row['ID'])
+            row['Name'], row['Course'], row['Year'] = stud_name, stud_course, stud_year
+        row = {'ID': row['ID'], 'Name': row['Name'], 'Course': row['Course'], 'Year': row['Year']}
+        writer.writerow(row)
+
+shutil.move(tempfile.name, filename)
+--------------------------------------------------------------------------------------------------
+2
+
+only need install mysql-connector-odbc-3.51.28-win32.msi.
+
+and pyodbc-2.1.7.win32-py2.7.exe.
+
+of course, you have ready installed MySQL and python 2.7.
+
+example:
+
+import pyodbc
+
+cndBase = pyodbc.connect("DRIVER={MySQL ODBC 3.51 Driver}; SERVER=localhost; PORT=3306;DATABASE=nameDBase; UID=root; PASSWORD=12345;")
+ptdBase = cndBase.cursor()
+
+query_str = 'SELECT* FROM nameTabla;'
+rows  = ptdBase.execute(query_str)
+
+for rw in rows:
+    print list(rw)`enter code here`
+    --------------------------------------------------------
+
+    import pyodbc
+
+dados_conexao = (
+    "Driver={SQL Server};"
+    "Server=DESKTOP-T2JV7P5;"
+    "Database=PythonSQL;"
+)
+
+conexao = pyodbc.connect(dados_conexao)
+print("Conexão Bem Sucedida")
+
+cursor = conexao.cursor()
+
+
+id = 3
+cliente = "Lira Python"
+produto = "Carro"
+data = "25/08/2021"
+preco = 5000
+quantidade = 1
+
+comando = f"""INSERT INTO Vendas(id_venda, cliente, produto, data_venda, preco, quantidade)
+VALUES
+    ({id}, '{cliente}', '{produto}', '{data}', {preco}, {quantidade})"""
+
+cursor.execute(comando)
+cursor.commit()
+
+-------------------------------------------------------------

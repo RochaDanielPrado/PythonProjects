@@ -79,5 +79,6 @@ class Main:
             start_str = str(start_object)
             end_str = str(end_object)
 
+        print('Fim...')
+
 Main()
-print('Fim...')
