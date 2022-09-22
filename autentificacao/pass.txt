@@ -1,0 +1,10 @@
+{"db_connect": {
+"host": "162.241.61.180",
+"db": "dexoveco_wp070",
+"user": "dexoveco_daniel",
+"pass": "@Rocce1102" },
+"tago_access": {
+"account": "c9159d98-2f00-4e9a-a8ba-7370e7584283",
+"profile_id": "626438b6cce7b90011bdf271"
+}
+}

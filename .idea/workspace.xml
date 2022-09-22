@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96e6e176-69c5-4cc8-a60e-18290811ddce" name="Changes" comment="show">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysql.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql.py" beforeDir="false" />
+>>>>>>> 83176846f566792d179ccdca77d2cac771f8763c
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,8 +57,8 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.mysql">
-    <configuration name="conversoes" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.connect">
+    <configuration name="connect" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="tagoio" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -64,7 +70,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/conversoes.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/connect.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -180,19 +186,19 @@
     </configuration>
     <list>
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.mysql" />
-      <item itemvalue="Python.conversoes" />
+      <item itemvalue="Python.connect" />
       <item itemvalue="Python.csvfile" />
+      <item itemvalue="Python.mysql" />
       <item itemvalue="Python.tago_data" />
       <item itemvalue="Python.teste" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.connect" />
         <item itemvalue="Python.mysql" />
         <item itemvalue="Python.tago_data" />
         <item itemvalue="Python.teste" />
         <item itemvalue="Python.csvfile" />
-        <item itemvalue="Python.conversoes" />
       </list>
     </recent_temporary>
   </component>
