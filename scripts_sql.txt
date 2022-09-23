@@ -1,0 +1,22 @@
+sql = """CREATE TABLE IF NOT EXISTS tago_data (
+           id INT(6) NOT NULL AUTO_INCREMENT,
+           data DATETIME,
+           device VARCHAR(50),
+           nome VARCHAR(50),
+           id_registro VARCHAR(50),
+           variavel VARCHAR(50),
+           valor VARCHAR(50),
+           dt_import DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+           PRIMARY KEY (id)) ENGINE = InnoDB;"""
+
+
+sql = """INSERT INTO `tago_data`
+            (id, data, device, nome, variavel, valor)
+            VALUES
+            ('xde', '2022-09-28 18:55:16', 'teste', 'texst', 'dfdd', '3456'),
+            ('dfdfd', '2022-09-06 18:55:16', 'dfdf', 'dfd', 'ddf', 'dfdf');"""
+
+sql = f"""INSERT INTO tago_data
+                    (data, device, nome, id_oper, variavel, valor)
+                    VALUES
+                    {dados_sql};"""

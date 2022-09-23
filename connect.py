@@ -19,6 +19,17 @@ def db_connect():
             linha = cursor.fetchone()
             cursor.close()
             print('Conectado ao banco de dados ', linha)
+            sql_create = """CREATE TABLE IF NOT EXISTS tago_data (
+                           id INT(6) NOT NULL AUTO_INCREMENT,
+                           data DATETIME,
+                           device VARCHAR(50),
+                           nome VARCHAR(50),
+                           id_registro VARCHAR(50),
+                           variavel VARCHAR(50),
+                           valor VARCHAR(50),
+                           dt_import DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                           PRIMARY KEY (id)) ENGINE = InnoDB;"""
+            db_create_table(sql_create)
     except Error as erro:
         print('Erro ao acessar banco - {}'.format(erro))
 
@@ -52,10 +63,10 @@ def config_read():
     finally:
         acesso.close()
 
-def db_create_table(sql):
+def db_create_table(sql_create):
 
     try:
-        db_connect()
+
         sqlx = """SELECT COUNT(*) FROM information_schema.tables
             WHERE table_schema = '""" + f'{db}' + "'" """
             AND table_name = 'tago_data'
@@ -65,27 +76,63 @@ def db_create_table(sql):
         existe = cursor.fetchone()
         existe = existe[0]
         if existe == 1:
-            print('A tabela já existe')
+            print('Tabela OK')
         else:
-            cursor.execute(sql)
             print('A tabela foi criada com exito')
+            cursor.execute(sql_create)
 
     except Error as erro:
         print('Erro ao criar a tabela banco - {}'.format(erro))
+
+
+def db_query_table():
+
+    try:
+        db_connect()
+        sql = "SELECT * FROM tago_data;"
+        cursor = con.cursor()
+        cursor.execute(sql)
+        records = cursor.fetchall()
+
+        return records
+    except Error as erro:
+        print('Erro ao ler na tabela banco - {}'.format(erro))
     finally:
         cursor.close()
         con.close()
-try:
-    sql = """CREATE TABLE IF NOT EXISTS tago_data (
-           id VARCHAR(50), 
-           data DATETIME, 
-           device VARCHAR(50), 
-           nome VARCHAR(50), 
-           variavel VARCHAR(50), 
-           valor VARCHAR(50), 
-           PRIMARY KEY (id)) ENGINE = InnoDB;"""
+def db_insert_table(sql):
 
-    db_create_table(sql)
+    try:
+        db_connect()
+        cursor = con.cursor()
+        print('Inserindo novos registros....')
+        cursor.execute(sql)
+        con.commit()
+
+    except Error as erro:
+        print('Erro ao inserir registros no banco - {}'.format(erro))
+    finally:
+        cursor.close()
+        con.close()
+
+def readIdMedidasfromDb():
+
+    file = db_query_table()
+    #print(file)
+    _id_list = []
+    # values to empty list
+    for col in file:
+        _id_list.append(col[4])
+    return _id_list
+
+try:
+    sql = """INSERT INTO `tago_data`
+                (id_oper, data, device, nome, variavel, valor)
+                VALUES
+                ('xde', '2022-09-28 18:55:16', 'teste', 'texst', 'dfdd', '3456'),
+                ('dfdfd', '2022-09-06 18:55:16', 'dfdf', 'dfd', 'ddf', 'dfdf');"""
+
+    #readIdMedidasfromDb()
 
 finally:
     pass
