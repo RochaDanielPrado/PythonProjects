@@ -1,3 +1,5 @@
+import json
+
 from tago_data import Tago_Data, ImportTago
 import connect
 from conversoes import Dtconvert, Bitconvert
@@ -43,29 +45,58 @@ class Main:
                         i = temp['id']
                         #print('compara', i, self.compara)
                         if i not in self.compara:
-                           # print('insere', 'i:', i, 'compara:', compara)
+                            # print('insere', 'i:', i, 'compara:', compara)
                             #print(temp['id'], temp['device'], temp['variable'], temp['value'], Dtconvert(temp['time']))
                             tupla = ()
-                            tupla = (str(Dtconvert(temp['time'])),
+                            dict_to_json = {}
+
+                            dict_to_json['tago_date'] = str(Dtconvert(temp['time']))
+                            dict_to_json['tago_deviece'] = key['id']
+                            dict_to_json['tago_name'] = key['nome']
+                            dict_to_json['tago_id_register'] = temp['id']
+                            dict_to_json['tago_variable'] = temp['variable'],
+                            dict_to_json['tago_value'] = str(temp['value'])
+
+                            dict_to_json = {'Registros': dict_to_json}
+                            js = json.dumps(dict_to_json)
+
+                            tupla = (js,
+                                    str(Dtconvert(temp['time'])),
                                     key['id'],
                                     key['nome'],
                                     temp['id'],
                                     temp['variable'],
-                                    str(temp['value']))
-
+                                    str(temp['value'])
+                                    )
                             #print('dados', dados)
+
                             if temp['variable'] == 'inputs':
                                 dict_temp = Bitconvert.bitand(temp['value'])
 
                                 for item in dict_temp:
                                     #print(f"key: {key}, value: {dict_temp[key]}")
+
                                     tupla=()
-                                    tupla = ( str(Dtconvert(temp['time'])),
+                                    dict_to_json = {}
+
+                                    dict_to_json['tago_date'] = str(Dtconvert(temp['time']))
+                                    dict_to_json['tago_deviece'] = key['id']
+                                    dict_to_json['tago_name'] = key['nome']
+                                    dict_to_json['tago_id_register'] = temp['id']
+                                    dict_to_json['tago_variable'] = item
+                                    dict_to_json['tago_value'] = str(dict_temp[item])
+
+                                    dict_to_json = {'Registros': dict_to_json}
+                                    js = json.dumps(dict_to_json)
+
+                                    tupla = ( js,
+                                            str(Dtconvert(temp['time'])),
                                             key['id'],
                                             key['nome'],
                                             temp['id'],
                                             item,
-                                            str(dict_temp[item]))
+                                            str(dict_temp[item])
+                                              )
                                     #writer.writerow(dicionario)
                                     dados.append(tupla)
                                 #print('tupla', tupla)
@@ -93,12 +124,14 @@ class Main:
                             dados_sql = dados_sql + f"{y}" + ",\n"
 
                     sql = f"""INSERT INTO tago_data
-                                (data, device, nome, id_registro, variavel, valor)
+                                (post_content, tago_date, tago_device, tago_name, tago_id_register, tago_variable, tago_value)
                                 VALUES
                                 {dados_sql};"""
-                    # print(sql)
+                    #print(sql)
                     try:
                         connect.db_insert_table(sql)
+                        #pass
+
                     except:
                         print('Não havia dados a inserir ou houve erro na inserção --')
 

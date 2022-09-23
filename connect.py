@@ -20,15 +20,16 @@ def db_connect():
             cursor.close()
             print('Conectado ao banco de dados ', linha)
             sql_create = """CREATE TABLE IF NOT EXISTS tago_data (
-                           id INT(6) NOT NULL AUTO_INCREMENT,
-                           data DATETIME,
-                           device VARCHAR(50),
-                           nome VARCHAR(50),
-                           id_registro VARCHAR(50),
-                           variavel VARCHAR(50),
-                           valor VARCHAR(50),
-                           dt_import DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                           PRIMARY KEY (id)) ENGINE = InnoDB;"""
+           id INT(6) NOT NULL AUTO_INCREMENT,
+           post_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+           post_content LONGTEXT NOT NULL,
+           tago_date DATETIME,
+           tago_device VARCHAR(50),
+           tago_name VARCHAR(50),
+           tago_id_register VARCHAR(50),
+           tago_variable VARCHAR(50),
+           tago_value VARCHAR(50),
+           PRIMARY KEY (id)) ENGINE = InnoDB;"""
             db_create_table(sql_create)
     except Error as erro:
         print('Erro ao acessar banco - {}'.format(erro))
