@@ -52,7 +52,7 @@ class Main:
                                     temp['id'],
                                     temp['variable'],
                                     str(temp['value']))
-                            dados.append(tupla)
+
                             #print('dados', dados)
                             if temp['variable'] == 'inputs':
                                 dict_temp = Bitconvert.bitand(temp['value'])
@@ -71,7 +71,7 @@ class Main:
                                 #print('tupla', tupla)
 
                             else:
-                               pass
+                               dados.append(tupla)
                                #print('nao entrou ')
                                # writer.writerow(dicionario)
 
