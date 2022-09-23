@@ -18,6 +18,6 @@ sql = """INSERT INTO `tago_data`
             ('dfdfd', '2022-09-06 18:55:16', 'dfdf', 'dfd', 'ddf', 'dfdf');"""
 
 sql = f"""INSERT INTO tago_data
-                    (data, device, nome, id_oper, variavel, valor)
-                    VALUES
-                    {dados_sql};"""
+           (post_content, tago_date, tago_device, tago_name, tago_id_register, tago_variable, tago_value)
+            VALUES
+            {dados_sql};"""

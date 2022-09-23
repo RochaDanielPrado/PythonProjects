@@ -89,7 +89,7 @@ class Main:
                                     dict_to_json = {'Registros': dict_to_json}
                                     js = json.dumps(dict_to_json)
 
-                                    tupla = ( js,
+                                    tupla = (js,
                                             str(Dtconvert(temp['time'])),
                                             key['id'],
                                             key['nome'],
